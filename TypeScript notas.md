@@ -96,3 +96,47 @@ const takePicture = async () => {
 Observamos que `CameraResultType` es un `enum` que restringe al atributo `resultType` a tener un valor dentro de las opciones del `enum`. En este caso, dicho atributo recibe el valor de la llave `Uri` del `enum`.
 
 En conclusión, un `enum` nos ayuda a no equivocarnos cuando asignemos valores a una variable reduciendo las posibilidades de asignación a una lista de opciones predefinidas.
+
+## Unknown type
+
+El _unknown type_ nos indica que una variable es de **un tipo de dato desconocido**. Es similar a `any`, pero sin quitar el análisis de código estático que nos brinda TypeScript.
+
+El tipo `unknown` nos **fuerza a hacer una verificación de tipo**. Esta es la forma que TypeScript sugiere trabajar con variables de las cuales no sabemos de qué tipo serán. Así evitamos utilizar constantemente `any`.
+
+### Unknown type en TypeScript
+
+Usamos el keyword `unknown` para declarar una variable de este tipo.
+
+```
+let unknownVar: unknown;
+```
+
+### Unknown vs. Any
+
+Con `any` podemos hacer lo que queramos, no hay restricción alguna, pero con `unknown` vamos a tener advertencias al momento de utilizar alguna función o método con variables de este tipo.
+
+```
+let unknownVar: unknown;
+
+unknownVar.toUpperCase(); // Nos marcará el editor una advertencia
+```
+
+Por ejemplo, no podemos directamente aplicar un método propio de un `string` a una variable `unknown`. Para ello debemos realizar una verificación de tipo para asegurarnos que se ejecutará dicho método siempre cuando `unknownVar` sea del tipo `string` en algún punto del programa:
+
+```
+let unknownVar: unknown;
+
+if (unknownVar === 'string') {
+	unknownVar.toUpperCase(); // Ahora ya no nos marcará como error.
+}
+```
+
+### Unknown en funciones
+
+También podemos emplear `unknown` en funciones si no sabemos exactamente que nos va a devolver.
+
+```
+const parse = (str: string): unknown => {
+	return JSON.parse(str)
+}
+```
