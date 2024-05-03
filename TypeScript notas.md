@@ -204,3 +204,39 @@ console.log(example([1,1,1,1])) // 'Es un array'
 console.log(example(1212)) // error: Uncaught Error: Not Match
 console.log(example('Hola después del fail')) // NUNCA SE EJECUTA, porque se lanzó un error previamente
 ```
+
+## Parámetros por defecto
+
+Los parámetros por defecto se usan para **predefinir valores** a los parámetros de una función **en caso de no especificar** un valor al invocarla.
+
+### Parámetros por defecto en TypeScript
+
+En TypeScript, usamos el signo `=` para definir el valor por defecto que cierto parámetro tendrá. Veamos un ejemplo:
+
+```
+// Definición de función
+const createProduct = (
+	id: string | number,
+	isNew: boolean = true, // 👀
+	stock: number = 10, // 👀
+) => {
+	return { // Retornamos un objeto con los valores pasados como parámetros.
+		id,
+		stock,
+		isNew
+	}
+}
+
+// Impresión en consola
+console.log(
+	createProduct(1)
+) // { id: 1, stock: 10, isNew: true } `stock` y `isNew` por defecto
+
+console.log(
+	createProduct(2, false)
+) // { id: 1, stock: 10, isNew: false } `stock` por defecto
+
+console.log(
+	createProduct(3, false, 50)
+) // { id: 1, stock: 50, isNew: false }
+```
