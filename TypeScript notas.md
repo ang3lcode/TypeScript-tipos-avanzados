@@ -345,3 +345,35 @@ console.log(
 	createProduct(1, false, 0)
 ) // { id: 1, stock: 0, isNew: false }
 ```
+
+## Parámetros rest
+
+En JavaScript, los parámetros rest nos **permiten enviar la cantidad de parámetros que queramos** a una función. Se denotan con `...` seguido del nombre con el cual identificaremos a estos parámetros:
+
+```
+// JavaScript
+function sum(...args){ // `...args` -> Parámetros rest
+  const suma = args.reduce((acumulador, num) => acumulador + num, 0)
+  return suma
+}
+
+console.log(sum(1,2)) // 5
+console.log(sum(1,2,3,4,5)) // 15
+console.log(sum(1,2,3,4,5,6,7,8,9,10)) // 55
+```
+
+## Parámetros rest en TypeScript
+
+En TypeScript, lo único que cambia es el tipado de los parámetros.
+
+```
+// TypeScript
+function sum(...args: number[]){ // `...args` -> Parámetros rest
+  const suma = args.reduce((acumulador, num) => acumulador + num, 0)
+  return suma
+}
+
+console.log(sum(1,2)) // 5
+console.log(sum(1,2,3,4,5)) // 15
+console.log(sum(1,2,3,4,5,6,7,8,9,10)) // 55
+```
