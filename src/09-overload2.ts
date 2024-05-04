@@ -3,8 +3,7 @@
 // [N,i,c,o] => 'Nico' ... string[] => string 1️⃣
 //  'Nico' => [N,i,c,o] ... string => string[] 2️⃣
 
-
-function parseStr(input: string | string[]): string | string[] {
+export function parseStr(input: string | string[]): string | string[] {
   if (Array.isArray(input)) {
     return input.join(''); // string
   } else {
@@ -45,3 +44,49 @@ if (typeof rtaStr === 'string') { //✅ Validación de tipos previamente...
 }
 console.log('rtaStr', "['N','i','c','o'] =>",rtaStr); // Vemos en consola
 
+
+// SOBRECARGAS:
+function parseStr(input: string): string[]; // Entrada: string - Salida: string[]
+function parseStr(input: string[]): string; // Entrada: string[] - Salida: string
+
+// Función principal con las instrucciones deseadas y a la que se le aplicarán las sobrecargas:
+function parseStr(input: unknown): unknown {
+}
+
+
+
+// SOBRECARGAS:
+function parseStr(input: string): string[]; // Entrada: string - Salida: string[]
+function parseStr(input: string[]): string; // Entrada: string[] - Salida: string
+
+// Función principal y a la que se le aplicarán las sobrecargas:
+function parseStr(input: unknown): unknown {
+    if (Array.isArray(input)) {
+        return input.join(''); // string
+    } else {
+        return input.split(''); // string[]
+    }
+}
+
+
+
+// SOBRECARGAS:
+function parseStr(input: string): string[]; // Entrada: string - Salida: string[]
+function parseStr(input: string[]): string; // Entrada: string[] - Salida: string
+
+// Función principal y a la que se le aplicarán las sobrecargas:
+function parseStr(input: unknown): unknown {
+    if (Array.isArray(input)) {
+        return input.join(''); // string
+    } else {
+        return input.split(''); // string[]
+    }
+}
+
+const rtaArray = parseStr('Nico'); // Salida: array
+rtaArray.reverse(); // ✅ Ya podemos acceder a los métodos de un array
+console.log('rtaArray', 'Nico =>' ,rtaArray);
+
+const rtaStr = parseStr(['N','i','c','o']); // Salida: string
+rtaStr.toLowerCase(); // ✅ Ya podemos acceder a los métodos de un string
+console.log('rtaStr', "['N','i','c','o'] =>",rtaStr);
