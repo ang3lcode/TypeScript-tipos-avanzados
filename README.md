@@ -1168,3 +1168,30 @@ console.log(requiredUser); // { id: 1, name: 'Fatima Fernández', email: 'fatima
 
 Hemos empleado `Required` para hacer que todas las propiedades de `User` sean obligatorias. Por lo tanto, el nuevo tipo `RequiredUser` tiene las propiedades `id`, `name`, `email` y `phoneNumber`, pero todas ellas son obligatorias.
 
+## ReadonlyArray
+
+En TypeScript, `ReadonlyArray` es un tipo que representa una **versión de solo lectura de un array**. Esto quiere decir que una vez creado un `ReadonlyArray`, no puedes cambiar sus elementos o su longitud.
+
+### Cómo usar ReadonlyArray en TypeScript
+
+La sintaxis para crear un `ReadonlyArray` en TypeScript es la siguiente:
+
+```
+let nombreArray: ReadonlyArray<tipo> = [...];
+```
+
+Donde `tipo` es el tipado de los elementos del array.
+
+Veamos cómo puedes utilizarlo con un ejemplo:
+
+```
+let numbers: ReadonlyArray<number> = [30, 76, 21, 85, 42];
+
+console.log(numbers[3]); // ✅SÍ está permitido, imprime el valor 85
+console.log(numbers.length); // ✅SÍ está permitido, imprime 5 que es la longitud del array
+
+//numbers[0] = 10; // ⛔NO permitido porque se intenta modificar un valor en el array
+//numbers.push(6); // ⛔NO permitido porque se intenta agregar un nuevo elemento en el array y con ello aumentar su longitud
+```
+
+El variable `numbers` es un array de números de solo lectura. Puedes leer los elementos del array y puedes consultar su longitud, pero no puedes modificar los elementos ni cambiar la longitud de este. Si intentas hacerlo, TypeScript lanzará un error en tiempo de compilación.
