@@ -28,4 +28,6 @@ findProducts({
   stock: 10,
   color: 'red',
   createdAt: new Date(),
+  isNew: true,
+  tags: ['as', 'as']
 })
